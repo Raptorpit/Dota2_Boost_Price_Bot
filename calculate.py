@@ -31,11 +31,11 @@ def average_price():
             mmr1_range = list(range(1, 2001))
             pair = {avg_price: mmr1_range}
             d.update(pair)
-        if index == 1:
+        elif index == 1:
             mmr1_range = list(range(2001, 3001))
             pair = {avg_price: mmr1_range}
             d.update(pair)
-        elif index > 1:
+        else:
             mmr1_range = list(range(3001+(index-2)*500, 3501+(index-2)*500))
             pair = {avg_price: mmr1_range}
             d.update(pair)
