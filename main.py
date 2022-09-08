@@ -57,6 +57,8 @@ def end_mmr_say(message):
         msg = bot.send_message(message.chat.id, text=f"Введи конечный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, say_boost_price)
+    if message.text == "Таблица средних цен за буст":
+        bot.send_message(message.chat.id, text=grp_data)
     else:
         msg = bot.send_message(message.chat.id, text="Введи пожалуйста число в диапазоне от 0 до 8500")
         bot.register_next_step_handler(msg, end_mmr_say)
@@ -71,6 +73,8 @@ def say_boost_price(message):
                          text=f"≈{(calculate.boost_price(avg_price_dict, start_mmr, end_mmr)):.2f} ₽ \n"
                               f"Сумма рассчитана на основе средней цены предложений бустеров с сайта Funpay")
         start_mmr_list.pop(0)
+    if message.text == "Таблица средних цен за буст":
+        bot.send_message(message.chat.id, text=grp_data)
     else:
         msg = bot.send_message(message.chat.id, text="Введи пожалуйста число в диапазоне от 0 до 8500")
         bot.register_next_step_handler(msg, say_boost_price)
