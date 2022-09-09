@@ -61,13 +61,11 @@ def end_mmr_say(message):
         bot.send_message(message.chat.id, text=grp_data)
     elif message.text == "Узнать цену буста":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
-                                                         f"(Для более точного расчета вводи ммр кратный 100)")
+                                                     f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
     else:
         msg = bot.send_message(message.chat.id, text="Введи пожалуйста число в диапазоне от 0 до 8500")
         bot.register_next_step_handler(msg, end_mmr_say)
-
-
 
 
 def say_boost_price(message):
@@ -83,13 +81,11 @@ def say_boost_price(message):
         bot.send_message(message.chat.id, text=grp_data)
     elif message.text == "Узнать цену буста":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
-                                                         f"(Для более точного расчета вводи ммр кратный 100)")
+                                                     f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
     else:
         msg = bot.send_message(message.chat.id, text="Введи пожалуйста число в диапазоне от 0 до 8500")
         bot.register_next_step_handler(msg, say_boost_price)
-
-
 
 
 @bot.message_handler(content_types=['text'])
