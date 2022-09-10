@@ -1,6 +1,5 @@
 import telebot
 from telebot import types
-
 import config
 import parcing
 import record
@@ -33,20 +32,20 @@ for i in range(0, 8501):
 @bot.message_handler(commands=['start'])
 def start_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_mmr = types.KeyboardButton("Узнать цену буста")
-    button_mmr_table = types.KeyboardButton("Таблица средних цен за буст")
+    button_mmr = types.KeyboardButton(text="Узнать цену буста❓")
+    button_mmr_table = types.KeyboardButton(text="Список средних цен за буст📜")
     markup.add(button_mmr, button_mmr_table)
-    msg = bot.send_message(message.chat.id, text="Привет!Я подскажу среднюю стоимость буста аккаунта.",
+    msg = bot.send_message(message.chat.id, text="Привет❗ Я подскажу среднюю стоимость буста аккаунта.",
                            reply_markup=markup)
     bot.register_next_step_handler(msg, start_mmr_say)
 
 
 def start_mmr_say(message):
-    if message.text == "Узнать цену буста":
+    if message.text == "Узнать цену буста❓":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
-    elif message.text == "Таблица средних цен за буст":
+    elif message.text == "Список средних цен за буст📜":
         bot.send_message(message.chat.id, text=grp_data)
 
 
@@ -57,9 +56,9 @@ def end_mmr_say(message):
         msg = bot.send_message(message.chat.id, text=f"Введи конечный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, say_boost_price)
-    elif message.text == "Таблица средних цен за буст":
+    elif message.text == "Список средних цен за буст📜":
         bot.send_message(message.chat.id, text=grp_data)
-    elif message.text == "Узнать цену буста":
+    elif message.text == "Узнать цену буста❓":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
@@ -77,9 +76,9 @@ def say_boost_price(message):
                          text=f"≈{(calculate.boost_price(avg_price_dict, start_mmr, end_mmr)):.2f} ₽ \n"
                               f"Сумма рассчитана на основе средней цены предложений бустеров с сайта Funpay")
         start_mmr_list.pop(0)
-    elif message.text == "Таблица средних цен за буст":
+    elif message.text == "Список средних цен за буст📜":
         bot.send_message(message.chat.id, text=grp_data)
-    elif message.text == "Узнать цену буста":
+    elif message.text == "Узнать цену буста❓":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
@@ -90,11 +89,11 @@ def say_boost_price(message):
 
 @bot.message_handler(content_types=['text'])
 def start_mmr_say(message):
-    if message.text == "Узнать цену буста":
+    if message.text == "Узнать цену буста❓":
         msg = bot.send_message(message.chat.id, text=f"Введи начальный ммр аккаунта:\n"
                                                      f"(Для более точного расчета вводи ммр кратный 100)")
         bot.register_next_step_handler(msg, end_mmr_say)
-    elif message.text == "Таблица средних цен за буст":
+    elif message.text == "Список средних цен за буст📜":
         bot.send_message(message.chat.id, text=grp_data)
 
 
